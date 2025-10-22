@@ -10,6 +10,13 @@ services:
     volumes:
       - ./Frontend:/app/frontend
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001"]
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 5s
+
   backend:
     build:
       context: .
